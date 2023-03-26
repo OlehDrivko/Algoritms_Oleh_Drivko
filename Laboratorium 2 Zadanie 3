@@ -4,5 +4,4 @@ def lexicographic_sort(numbers):
     strings.sort()
     sorted_numbers = [int(s) for s in strings]
     return sorted_numbers
-sorted_numbers = lexicographic_sort(numbers)
-print(sorted_numbers)
+print(lexicographic_sort(numbers))
