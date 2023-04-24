@@ -1,33 +1,57 @@
+#ZAD1 NWD rekurencyjnie wersja 1
 def NWD(a,b):
-    while a != b:
-
-        if a > b:
-            a = a - b
+    while a!=b:
+        if a>b:
+            a=a-b
+            return NWD(a,b)
 
         else:
-            b = b - a
-    return a
-
-
-def NWDrek(a,b):
-    if a!=b:
-        if a>b:return NWDrek(a-b,b)
-        else:return NWDrek(a,b-a)
-    return a
-
-
-
-def nwdII(a,b):
-    while b!=0:
-        temp=b
-        b=a%b
-        a=temp
-    return a
-
-
-def nwdIIrek(a,b):
-    if b!=0:
-        return nwdIIrek(b,a%b)
+            b=b-a
+            return NWD(a,b)
     return a
 print(NWD(12,12))
-print(NWDrek(12,18))
+
+
+
+#ZAD1 NWD rekurencyjnie wersja 2
+def NWD (a,b):
+    while b!=0:
+        c=b
+        b=a%b
+        a=c
+        return NWD(a,b)
+    return a
+print(NWD(3,6))
+
+
+#ZAD1 NWD zoptymalizowany algorytm Euklidesa
+a=int(input("Podaj a : "))
+b=int(input("Podaj b : "))
+if b==0:
+    print("NWD jest: ",a)
+
+elif a < 0 or b < 0:
+    print("Nie może tak być! ")
+
+else:
+
+    while b>0:
+        reszta = a%b
+        a=b
+        b=reszta
+    print("NWD jest: ",a )
+    
+    
+ # ZAD1 NWD. Nieoptymalna postać algorytmu
+ a=int(input("Podaj a: "))
+b=int(input("Podaj b :"))
+
+while a !=b:
+    if a>b:
+        a=a-b
+        continue
+    elif b>a:
+        b=b-a
+        continue
+else:
+    print(a)
