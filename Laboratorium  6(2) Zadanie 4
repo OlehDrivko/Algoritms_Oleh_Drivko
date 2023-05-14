@@ -1,0 +1,31 @@
+def calculate_RPN(expression):
+    stack = []
+    operators = set(["+", "-", "*", "/", "^"])
+
+    for token in expression.split():
+        if token not in operators:
+            stack.append(float(token))
+        else:
+            if token == "+":
+                a = stack.pop()
+                b = stack.pop()
+                stack.append(b + a)
+            elif token == "-":
+                a = stack.pop()
+                b = stack.pop()
+                stack.append(b - a)
+            elif token == "*":
+                a = stack.pop()
+                b = stack.pop()
+                stack.append(b * a)
+            elif token == "/":
+                a = stack.pop()
+                b = stack.pop()
+                stack.append(b / a)
+            elif token == "^":
+                a = stack.pop()
+                b = stack.pop()
+                stack.append(b ** a)
+
+    return stack.pop()
+print(calculate_RPN("3 2 5 * +"))
