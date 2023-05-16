@@ -1,0 +1,18 @@
+def add_binary_number_sorted(number, sorted_list):
+    binary_number = bin(number)[2:]
+    index = 0
+
+    while index < len(sorted_list) and int(sorted_list[index], 2) < number:
+        index += 1
+
+    sorted_list.insert(index, binary_number)
+
+    return sorted_list
+
+numbers = [5, 3, 9, 2, 7]
+sorted_list = []
+
+for number in numbers:
+    sorted_list = add_binary_number_sorted(number, sorted_list)
+
+print(sorted_list)
