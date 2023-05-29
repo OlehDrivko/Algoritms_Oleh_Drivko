@@ -1,0 +1,60 @@
+class Graph:
+    def __init__(self, num_vertices):
+        self.num_vertices = num_vertices
+        self.adj_matrix = [[0] * num_vertices for _ in range(num_vertices)]
+
+    def add_edge(self, src, dest, weight=1):
+        if 0 <= src < self.num_vertices and 0 <= dest < self.num_vertices:
+            self.adj_matrix[src][dest] = weight
+            self.adj_matrix[dest][src] = weight
+
+    def print_adjacency_matrix(self):
+        print("Macierz sąsiedztwa:")
+        for row in self.adj_matrix:
+            print(row)
+
+    def print_adjacency_list(self):
+        print("Lista sąsiedztwa:")
+        for vertex in range(self.num_vertices):
+            neighbors = []
+            for dest in range(self.num_vertices):
+                if self.adj_matrix[vertex][dest] != 0:
+                    neighbors.append(dest)
+            print(f"{vertex}: {neighbors}")
+
+    def draw_graph(self):
+        print("Interpretacja graficzna:")
+        for src in range(self.num_vertices):
+            for dest in range(src + 1, self.num_vertices):
+                if self.adj_matrix[src][dest] != 0:
+                    print(f"{src} -- {dest}")
+
+
+def main():
+    print("Witaj w programie do definiowania grafów!")
+    graph_type = input("Podaj typ grafu (skierowany/nieskierowany/ważony/inny): ")
+    num_vertices = int(input("Podaj liczbę wierzchołków: "))
+    num_edges = int(input("Podaj liczbę połączeń: "))
+
+    graph = Graph(num_vertices)
+
+    print(f"Podaj {num_edges} połączeń w formacie 'wierzchołek_źródłowy wierzchołek_docelowy [waga]':")
+    for _ in range(num_edges):
+        edge_info = input().split()
+        src = int(edge_info[0])
+        dest = int(edge_info[1])
+        weight = 1
+        if len(edge_info) == 3:
+            weight = int(edge_info[2])
+        graph.add_edge(src, dest, weight)
+
+    print()
+    graph.print_adjacency_matrix()
+    print()
+    graph.print_adjacency_list()
+    print()
+    graph.draw_graph()
+
+
+if __name__ == '__main__':
+    main()
